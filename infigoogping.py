@@ -11,9 +11,6 @@
 # Resources:
     # https://stackoverflow.com/questions/26468640/python-function-to-test-ping
 
-# !!!Important Note!!!:
-    # The ping status will be shown first, then hit Ctrl+C to see the timestamps 
-
 # Import necessary libraries for called functions
 import datetime, time, os
 
