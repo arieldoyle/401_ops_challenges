@@ -15,15 +15,12 @@
 import datetime, time, os
 
 # Declare hello_ping function
+# Declare variable host for Google.com
+# Declare variable status
+ # Checks status variable for successful or failed ping based on output
 def hello_ping():
-
-    # Declare variable host for Google.com
     host = "8.8.8.8"
-
-    # Declare variable status
     status = os.system("ping -c 1 " + host)
-
-    # Checks status variable for successful or failed ping based on output
     if status == 0:
         answer = " Network ACTIVE to 8.8.8.8 "
     else:
@@ -44,18 +41,14 @@ print(str(now))
 
 # Declare ping_test function to get timestamps of ping every 2 seconds
 # Infinite while loop to ping and print out ping status/data
-
+# Print start time ping
+# Pause action for 2 seconds
+# Print end time of ping
 def ping_test():
     while True:
-        # Print start time ping
         print("Start : %s" % time.ctime())
-
         print(answer)
-
-        # Pause action for 2 seconds
         time.sleep(2)
-
-        # Print end time of ping
         print("End : %s" % time.ctime())
 
 # Main
