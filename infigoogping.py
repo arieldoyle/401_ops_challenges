@@ -28,9 +28,9 @@ def hello_ping():
 
     # Checks status variable for successful or failed ping based on output
     if status == 0:
-        answer = " Google network ping SUCCESSFUL "
+        answer = " Network ACTIVE to 8.8.8.8 "
     else:
-        answer = " Google network ping FAILED "
+        answer = " Network ERROR to 8.8.8.8 "
     return answer
     
 # Declare answer equal to hello_ping function
