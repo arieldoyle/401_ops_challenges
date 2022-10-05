@@ -2,9 +2,9 @@
 
 ## 401
 
-- [Class 02 OPS Challenge](WinUpdates.ps1)
-- [Class 03 OPS Challenge](infigoogping.py)
-- [Class 04 OPS Challenge](uptimesensor.py)
+- [Class 02 OPS Challenge](infigoogping.py)
+- [Class 03 OPS Challenge](uptimesensor.py)
+- [Class 04 OPS Challenge](404)
 - [Class 05 OPS Challenge](404)
 - [Class 06 OPS Challenge](404)
 - [Class 07 OPS Challenge](404)
