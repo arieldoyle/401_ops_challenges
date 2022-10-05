@@ -49,7 +49,7 @@ def active_alert():
 # Declare error_alert function to get network status, open SMTP server, send ERROR email, and close SMTP server
 def error_alert():
     print("Timestamp : %s" % time.ctime())
-    server = smtplib.SMTP_SSL('smtp.gmail.com,' 465)
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     server.ehlo()
     server.login(email, password)
     down_msg = "Salutations! Your system is DOWN as of: %s" % time.ctime()
