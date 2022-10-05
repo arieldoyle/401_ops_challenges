@@ -17,7 +17,7 @@ import datetime, time, os
 # Declare hello_ping function
 # Declare variable host for Google.com
 # Declare variable status
- # Checks status variable for successful or failed ping based on output
+# Checks status variable for successful or failed ping based on output
 def hello_ping():
     host = "8.8.8.8"
     status = os.system("ping -c 1 " + host)
