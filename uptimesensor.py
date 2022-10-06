@@ -21,13 +21,12 @@ from getpass import getpass
 
 # Declare variables
 down = " Network is DOWN "
-up = "Network is UP "
+up = " Network is UP "
 ping_status = 0
 last = 0
-now = datetime.datetime.now()
 smtp_server = "smtp.gmail.com"
 port = 465
-sender_email = "my@gmail.com"
+sender_email = "mailbot@gmail.com"
 
 # Prompt user for email
 user_email = input("Please enter your email to send network updates to: ")
@@ -41,29 +40,30 @@ ipaddress = input("Please input the IP address you would like to monitor and get
 # Declare functions
 # Declare error_alert function to get network status, open SMTP server, send ERROR email, and close SMTP server
 def error_alert():
-    now
-    print("Timestamp : %s" % time.ctime())
+    now = datetime.datetime.now()
+    timestamp = now.strftime('%m-%d-%Y %H:%M:%S %p')
     server = smtplib.SMTP_SSL(smtp_server, port)
     server.ehlo()
     server.login(user_email, password)
-    down_msg = "Salutations! Your system is DOWN as of: %s" % time.ctime()
-    server.sendmail(sender_email, user_email, down_msg)
+    error_msg = "Salutations! Your system is DOWN as of: %s" % timestamp
+    server.sendmail(sender_email, user_email, error_msg)
     server.quit()   
     
 # Declare active_alert function to get network status, open SMTP server, send ACTIVE email, and close SMTP server
 def active_alert():
-    now
-    print("Timestamp : %s" % time.ctime())
+    now = datetime.datetime.now()
+    timestamp = now.strftime('%m-%d-%Y %H:%M:%S %p')
     server = smtplib.SMTP_SSL(smtp_server, port)
     server.ehlo()
     server.login(user_email, password)
-    active_msg = "Salutations! Your system is ACTIVE as of: %s" % time.ctime()
+    active_msg = "Salutations! Your system is ACTIVE as of: %s" % timestamp
     server.sendmail(sender_email, user_email, active_msg)
     server.quit()
 
 # Declare ping_alert function to check for network status changes and create a response
 def ping_alert():
-    print("Timestamp : %s" % time.ctime())
+    now = datetime.datetime.now()
+    timestamp = now.strftime('%m-%d-%Y %H:%M:%S %p')
 
     global ping_status
     global last
@@ -72,8 +72,8 @@ def ping_alert():
         last = up
         active_alert()
     elif (( ping_status != last ) and ( ping_status == down )):
-        last = down
         error_alert()
+        last = down
 
     ping = os.system("ping -c 1 " + ipaddress)
 
@@ -81,7 +81,7 @@ def ping_alert():
         ping_status = up
     else:
         ping_status = down
-        print("Timestamp : %s" % time.ctime() + ping_status + "to: " + ipaddress)
+    print(timestamp + ping_status + "to: " + ipaddress)
 
 # Main
 while True:
