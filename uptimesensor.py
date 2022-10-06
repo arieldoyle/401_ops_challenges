@@ -14,7 +14,7 @@
     # https://realpython.com/python-send-email/
 
 # Import necessary libraries for called functions
-import datetime, os, smtplib, ssl, time
+import datetime, os, smtplib, time
 
 # A way to keep the password from displaying on the screen
 from getpass import getpass
@@ -38,9 +38,21 @@ password = getpass("Please enter your email account password: ")
 # Prompt user for ip
 ipaddress = input("Please input the IP address you would like to monitor and get updates for: ")
 
-
+# Declare functions
+# Declare error_alert function to get network status, open SMTP server, send ERROR email, and close SMTP server
+def error_alert():
+    now
+    print("Timestamp : %s" % time.ctime())
+    server = smtplib.SMTP_SSL(smtp_server, port)
+    server.ehlo()
+    server.login(user_email, password)
+    down_msg = "Salutations! Your system is DOWN as of: %s" % time.ctime()
+    server.sendmail(sender_email, user_email, down_msg)
+    server.quit()   
+    
 # Declare active_alert function to get network status, open SMTP server, send ACTIVE email, and close SMTP server
 def active_alert():
+    now
     print("Timestamp : %s" % time.ctime())
     server = smtplib.SMTP_SSL(smtp_server, port)
     server.ehlo()
@@ -48,16 +60,6 @@ def active_alert():
     active_msg = "Salutations! Your system is ACTIVE as of: %s" % time.ctime()
     server.sendmail(sender_email, user_email, active_msg)
     server.quit()
-
-# Declare error_alert function to get network status, open SMTP server, send ERROR email, and close SMTP server
-def error_alert():
-    print("Timestamp : %s" % time.ctime())
-    server = smtplib.SMTP_SSL(smtp_server, port)
-    server.ehlo()
-    server.login(user_email, password)
-    down_msg = "Salutations! Your system is DOWN as of: %s" % time.ctime()
-    server.sendmail(sender_email, user_email, down_msg)
-    server.quit()    
 
 # Declare ping_alert function to check for network status changes and create a response
 def ping_alert():
