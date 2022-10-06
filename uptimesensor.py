@@ -11,9 +11,10 @@
 # Resources:
     # https://stackoverflow.com/questions/26468640/python-function-to-test-ping
     # https://towardsdatascience.com/how-to-easily-automate-emails-with-python-8b476045c151
+    # https://realpython.com/python-send-email/
 
 # Import necessary libraries for called functions
-import datetime, time, os, smtplib
+import datetime, os, smtplib, ssl, time
 
 # A way to keep the password from displaying on the screen
 from getpass import getpass
@@ -24,9 +25,12 @@ up = "Network is UP "
 ping_status = 0
 last = 0
 now = datetime.datetime.now()
+smtp_server = "smtp.gmail.com"
+port = 465
+sender_email = "my@gmail.com"
 
 # Prompt user for email
-email = input("Please enter your email to send network updates to: ")
+user_email = input("Please enter your email to send network updates to: ")
 
 # Prompt user for password
 password = getpass("Please enter your email account password: ")
@@ -35,25 +39,24 @@ password = getpass("Please enter your email account password: ")
 ipaddress = input("Please input the IP address you would like to monitor and get updates for: ")
 
 
-
 # Declare active_alert function to get network status, open SMTP server, send ACTIVE email, and close SMTP server
 def active_alert():
     print("Timestamp : %s" % time.ctime())
-    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server = smtplib.SMTP_SSL(smtp_server, port)
     server.ehlo()
-    server.login(email, password)
+    server.login(user_email, password)
     active_msg = "Salutations! Your system is ACTIVE as of: %s" % time.ctime()
-    server.sendmail('justsomerando@myserver.com', email, active_msg)
+    server.sendmail(sender_email, user_email, active_msg)
     server.quit()
 
 # Declare error_alert function to get network status, open SMTP server, send ERROR email, and close SMTP server
 def error_alert():
     print("Timestamp : %s" % time.ctime())
-    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server = smtplib.SMTP_SSL(smtp_server, port)
     server.ehlo()
-    server.login(email, password)
+    server.login(user_email, password)
     down_msg = "Salutations! Your system is DOWN as of: %s" % time.ctime()
-    server.sendmail('justsomerando@myserver.com', email, down_msg)
+    server.sendmail(sender_email, user_email, down_msg)
     server.quit()    
 
 # Declare ping_alert function to check for network status changes and create a response
