@@ -6,15 +6,22 @@
 # Purpose: Automatic OS updates enabled
 # Resources: https://www.nakivo.com/blog/automate-windows-updates-using-powershell-short-overview/
 
+# Main
+
+# Allow executiion processing of running scripts
+set-executionpolicy -ExecutionPolicy remotesigned -scope Process -force
+
+# Display Message
+Write-Host "Automating the installation of Windows Updates on this machine"
+
+Start-Sleep -Seconds 1
+
+# Imports PSWindowsUpdate
+Import-Module -Name PSWindowsUpdate
+
 # Installs PSWindowsUpdate to the PC (Type A for Yes to All Option)
 Install-Module -Name PSWindowsUpdate
 
-# Create a PSWindowsUpdate Module within the C: Drive > Windows Folder for storage
-Save-Module -Name PSWindowsUpdate -C:\Windows
-
-# Input C:\Windows in the Path request
-
-# Main
 # List available updates
 Get-WindowsUpdate
 
