@@ -118,6 +118,4 @@ def ask_user():
 # Main
 ask_user()
 
-# Enable Password Complexity Requirements
-
 # End
