@@ -1,8 +1,8 @@
 #!/usr/bin/python3
- 
-# Script: Ops 401 Class 06 Ops Challenge Solution
+
+# Script: Ops 401 Class 07 Ops Challenge Solution
 # Author: Ariel D.                  
-# Date of latest revision: 10OCT2022      
+# Date of latest revision: 11OCT2022      
 # Purpose: 
     # Prompt the user to select a mode:
         # Encrypt a file (mode 1)
@@ -18,10 +18,14 @@
             # Prompt the user to provide a cleartext string
                 # Print the cleartext to the screen
                 # Recursively encrypt a single folder and all its contents
+        # Recursively encrypt a single folder and all its contents (mode 5)
+        # Recursively decrypt a single folder that was encrypted by this tool (mode 6)
         
 # Resources:
     # https://pypi.org/project/cryptography/
     # https://www.thepythoncode.com/article/encrypt-decrypt-files-symmetric-python
+    # https://appdividend.com/2020/01/20/python-list-of-files-in-directory-and-subdirectories/
+    # https://www.pythoncentral.io/recursive-file-and-directory-manipulation-in-python-part-1/
 
 # Import library for encryption
 from cryptography.fernet import Fernet

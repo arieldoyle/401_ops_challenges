@@ -7,7 +7,7 @@
 - [Class 04 OPS Challenge](passcomplex_lab04.ps1)
 - [Class 05 OPS Challenge](https://docs.google.com/document/d/1gCNzgcuG515Oc6GAPuAB7Q0du3j54UtvBd9BPGQR1cg/edit)
 - [Class 06 OPS Challenge](fileencrypt.py)
-- [Class 07 OPS Challenge](404)
+- [Class 07 OPS Challenge](fileencrypt2.py)
 - [Class 08 OPS Challenge](404)
 - [Class 09 OPS Challenge](404)
 - [Class 10 OPS Challenge](404)
