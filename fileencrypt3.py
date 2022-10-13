@@ -26,6 +26,9 @@
     # https://www.thepythoncode.com/article/encrypt-decrypt-files-symmetric-python
     # https://appdividend.com/2020/01/20/python-list-of-files-in-directory-and-subdirectories/
     # https://www.pythoncentral.io/recursive-file-and-directory-manipulation-in-python-part-1/
+    # https://www.devdungeon.com/content/dialog-boxes-python
+    # https://github.com/ncorbuk/Python-Ransomware/blob/master/RansomWare.py
+    # https://www.secpod.com/blog/wp-content/uploads/2017/05/Screenshot-from-2017-05-14-23-42-20.png
 
 # Import library for encryption
 from fileinput import filename
