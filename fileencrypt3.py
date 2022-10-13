@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-# Script: Ops 401 Class 07 Ops Challenge Solution
+# Script: Ops 401 Class 08 Ops Challenge Solution
 # Author: Ariel D.                  
-# Date of latest revision: 11OCT2022      
+# Date of latest revision: 12OCT2022      
 # Purpose: 
     # Prompt the user to select a mode:
         # Encrypt a file (mode 1)
@@ -32,6 +32,13 @@ from fileinput import filename
 from cryptography.fernet import Fernet
 from posixpath import dirname
 import os, os.path
+import pyautogui
+import ctypes
+import urllib.request
+
+# Declare variables
+username = os.path.expanduser("~")
+wallpath = f"{username}/OneDrive/Desktop/"
 
 # Declare write key function
 def write_key():
@@ -175,6 +182,27 @@ def folder_decrypt():
     # Prints completion of folder and content decryption
     print("Folder and contents have been decrypted.")
 
+# Defines function that changes desktop background in Windows
+def change_desktop():
+    global wallpath
+    imageUrl = 'https://wallpapercave.com/wp/wp9680909.png'
+    # Go to specif url and download+save image using absolute path
+    path = f'{wallpath}Desktop/background.jpg'
+    urllib.request.urlretrieve(imageUrl, path)
+    SPI_SETDESKWALLPAPER = 20
+    # Access windows dlls for funcionality eg, changing dekstop wallpaper
+    ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, path, 0)
+
+# Defines function that displays randsomware popups
+def popup():    
+    pyautogui.alert("Would you look at that? I changed your desktop backgound...", "You might want to click the button below to take a breath", button='Safe Space')
+    pyautogui.alert("Your data is encrypted and being held hostage....temporarily", "Click the help button for more details. If you want to that is... no pressure", button='HELP!')
+    pyautogui.alert("Since you asked nicely....", "Just run the script you just ran, select 8 and your data/background will be restored. Who is a sucker?", button='I am a sucker')
+
+def restore_desktop():
+    SPI_SETDESKWALLPAPER = 20
+    ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, 'C:\Windows\Web\Wallpaper\Windows\img0.jpg', 0)
+
 def user_prompt():
     # Asks user for mode input
     mode = input("Please pick an actionable option below:\
@@ -184,6 +212,7 @@ def user_prompt():
     \n4. Decrypt a message\
     \n5. Encrypt a folder and contents\
     \n6. Decrypt a folder and contents (previously encrypted by this tool ONLY)\
+    \n7. Safe Space\
     \n\
     \nPlease enter a number: ")
     # If statements for above functions/actions
@@ -199,6 +228,11 @@ def user_prompt():
         folder_encrypt()
     elif (mode == "6"):
         folder_decrypt()
+    elif (mode == "7"):
+        change_desktop()
+        popup()
+        restore_desktop()
+        print("Did you like your Safe Space? Desktop restored.")
     else:
         print("Invalid input")
 

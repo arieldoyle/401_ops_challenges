@@ -48,39 +48,10 @@ def load_key():
 def if_key():
     # Key variable used load key function to check for key and return a value
     key = load_key()
-    # Prints to the screen the key value
-    print("Key is: " + str(key.decode('utf-8')))
     # If key value returned None, key will be written by the write key function
     if key == None:
         key = write_key()
     return Fernet(key)
-
-#  Declare the encrypt message function for mode 3 and 4
-def encrypt_message():
-    # Gets user message input to encrypt
-    user_message = input("Enter message would you like to encrypt: ")
-    # Encodes the message string
-    message_encode = user_message.encode()
-    # Variable that checks for the key.key (uses if_key function)
-    f = if_key()
-    print("Plaintext message is: " + user_message)
-    # Encrypt the message
-    encrypted = f.encrypt(message_encode)
-    # Prints encrypted message
-    print("Encrypted message is: " + str(encrypted.decode('utf-8')))
-
-# Declare decrypt message function for mode 3 and 4
-def decrypt_message():
-    # Gets user message input to decrypt
-    user_input = input("Enter message would you like to decrypt: ")
-    # Decodes the message string
-    message_decode = str.encode(user_input)
-    # Variable that checks for the key.key (uses if_key function)
-    f = if_key()
-    # Decrypt the message
-    decrypted = f.decrypt(message_decode)
-    # Prints decrypted message
-    print("Decrypted message is: " + str(decrypted.decode('utf-8')))
 
 # Declare encrypt file function for mode 1 and 2
 def encrypt_file():
@@ -93,24 +64,54 @@ def encrypt_file():
         file_data = file.read()
     # Encrypt data
     encrypted_file = f.encrypt(file_data)
-    # Opens encrypted file and opens file in binary format for writing
+    # Opens encrypted file in binary format for writing
     with open(filename, "wb") as file:
         file.write(encrypted_file)
 
 # Declare decrypt file function for mode 1 and 2
 def decrypt_file():
+    # Variable that checks for the key.key (uses if_key function)
     f = if_key()
+    # Gets user file path input to decrypt
     filename = input("Enter the full filepath for the file you wish to decrypt: ")
     # Opens the user input file in binary format for reading
     with open(filename, "rb") as file:
         encrypted_data = file.read()
     # Decrypt data
     decrypted_data = f.decrypt(encrypted_data)
-    # Opens encrypted file and opens file in binary format for writing
+    # Opens encrypted file in binary format for writing
     with open (filename, "wb") as file:
         file.write(decrypted_data)
 
-def ask_user():
+#  Declare the encrypt message function for mode 3 and 4
+def encrypt_message():
+    # Gets user message input to encrypt
+    user_message = input("Enter message would you like to encrypt: ")
+    # Encodes the message string
+    message_encode = user_message.encode()
+    # Variable that checks for the key.key (uses if_key function)
+    f = if_key()
+    # Prints out message user put in in plaintext
+    print("Plaintext message is: " + user_message)
+    # Encrypt the message
+    encrypted = f.encrypt(message_encode)
+    # Prints encrypted message
+    print("Encrypted message is: " + str(encrypted.decode('utf-8')))
+
+# Declare decrypt message function for mode 3 and 4
+def decrypt_message():
+    # Gets user message input to decrypt
+    user_message = input("Enter message would you like to decrypt: ")
+    # Decodes the message string
+    message_decode = str.encode(user_message)
+    # Variable that checks for the key.key (uses if_key function)
+    f = if_key()
+    # Decrypt the message
+    decrypted = f.decrypt(message_decode)
+    # Prints decrypted message into plaintext
+    print("Decrypted plaintext message is: " + str(decrypted.decode('utf-8')))
+
+def user_prompt():
     # Asks user for mode input
     mode = input("Please pick an actionable option below:\
     \n1. Encrypt a file\
@@ -135,6 +136,6 @@ def ask_user():
 
 # Main
 # Runs the ask user function
-ask_user()
+user_prompt()
 
 # End
