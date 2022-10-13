@@ -35,9 +35,9 @@ from fileinput import filename
 from cryptography.fernet import Fernet
 from posixpath import dirname
 import os, os.path
-import pyautogui
 import ctypes
-import urllib.request
+import ctypes.wintypes
+#import win32
 
 # Declare variables
 username = os.path.expanduser("~")
@@ -186,25 +186,28 @@ def folder_decrypt():
     print("Folder and contents have been decrypted.")
 
 # Defines function that changes desktop background in Windows
-def change_desktop():
-    global wallpath
-    imageUrl = 'https://wallpapercave.com/wp/wp9680909.png'
+#def change_desktop():
+    #global wallpath
+    #imageUrl = 'https://wallpapercave.com/wp/wp9680909.png'
     # Go to specif url and download+save image using absolute path
-    path = f'{wallpath}Desktop/background.jpg'
-    urllib.request.urlretrieve(imageUrl, path)
-    SPI_SETDESKWALLPAPER = 20
+    #path = f'{wallpath}Desktop/background.jpg'
+    #urllib.request.urlretrieve(imageUrl, path)
+    #SPI_SETDESKWALLPAPER = 20
     # Access windows dlls for funcionality eg, changing dekstop wallpaper
-    ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, path, 0)
+    #ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, path, 0)
 
-# Defines function that displays randsomware popups
-def popup():    
-    pyautogui.alert("Would you look at that? I changed your desktop backgound...", "You might want to click the button below to take a breath", button='Safe Space')
-    pyautogui.alert("Your data is encrypted and being held hostage....temporarily", "Click the help button for more details. If you want to that is... no pressure", button='HELP!')
-    pyautogui.alert("Since you asked nicely....", "Just run the script you just ran, select 8 and your data/background will be restored. Who is a sucker?", button='I am a sucker')
+# Defines function that edits popup message
+ctypes.windll.user32.MessageBoxW(0, "I am born", "Hello World", 16)
 
-def restore_desktop():
-    SPI_SETDESKWALLPAPER = 20
-    ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, 'C:\Windows\Web\Wallpaper\Windows\img0.jpg', 0)
+# Defines function that displays popup
+def popup(title, text, style): 
+    return ctypes.windll.user32.MessageBoxW(0, text, title, style) 
+popup('Your title', 'Your text', 1)
+
+# Defines the restore desktop background in Windows
+# def restore_desktop():
+    #SPI_SETDESKWALLPAPER = 20
+    #ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, 'C:\Windows\Web\Wallpaper\Windows\img0.jpg', 0)
 
 def user_prompt():
     # Asks user for mode input
@@ -232,9 +235,9 @@ def user_prompt():
     elif (mode == "6"):
         folder_decrypt()
     elif (mode == "7"):
-        change_desktop()
+        #change_desktop()
         popup()
-        restore_desktop()
+        #restore_desktop()
         print("Did you like your Safe Space? Desktop restored.")
     else:
         print("Invalid input")
