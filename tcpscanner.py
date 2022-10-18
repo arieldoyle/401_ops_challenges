@@ -15,6 +15,7 @@
     # https://scapy.readthedocs.io/en/latest/index.html
     # https://stackoverflow.com/questions/20429674/get-tcp-flags-with-scapy
     # https://resources.infosecinstitute.com/port-scanning-using-scapy/
+    # https://stackoverflow.com/questions/63321812/filter-http-get-requests-packets-using-scapy
 # Key Note: 
     # Must install scapy complete bundle and then import library
         # Command: sudo pip install --pre scapy[complete]
@@ -36,7 +37,7 @@ port_range = [21, 22, 23]
 # Send SYN with random source ports for each destination port
 for dst_port in port_range:
     src_port = random.randint(1025,65534)
-    port_string = str(dst_port)
+    port_string = "".join(map(chr, bytes(dst_port)))
     rspns = sr1(IP(dst=host)/TCP(sport=src_port,dport=dst_port,flags="S"),timeout=1,verbose=0)
     if rspns is None:
         # Port Filtered and silently dropped
