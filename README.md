@@ -12,5 +12,5 @@
 - [Class 10 OPS Challenge](https://docs.google.com/document/d/1FAjarmPuS-vpf_j0h-0zG4gj7mJYRfphLM2bp3BzdWY/edit?usp=sharing)
 - [Class 11 OPS Challenge](tcpscanner.py)
 - [Class 12 OPS Challenge](tcpscanner2.py)
-- [Class 13 OPS Challenge](404)
+- [Class 13 OPS Challenge](tcpscanner3.py)
 - [Class 14 OPS Challenge](404)
