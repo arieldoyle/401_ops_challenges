@@ -13,4 +13,5 @@
 - [Class 11 OPS Challenge](tcpscanner.py)
 - [Class 12 OPS Challenge](tcpscanner2.py)
 - [Class 13 OPS Challenge](tcpscanner3.py)
-- [Class 14 OPS Challenge](404)
+- [Class 15 OPS Challenge](https://docs.google.com/document/d/1H6vcaVSY_atgFFb6l0rwBKurjFQZrY6D9iF4UR7Xoig/edit)
+- [Class 16 OPS Challenge](bruteforce.py)
