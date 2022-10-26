@@ -13,3 +13,4 @@
 - [Class 13 OPS Challenge](tcpscanner3.py)
 - [Class 16 OPS Challenge](bruteforce.py)
 - [Class 17 OPS Challenge](bruteforce2.py)
+- [Class 18 OPS Challenge](bruteforce3.py)
