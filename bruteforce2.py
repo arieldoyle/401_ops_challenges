@@ -96,6 +96,7 @@ def ssh_connect():
     if success == "no":
         # While success is no, it will show the password it is attempting to use to login
         while line:
+            # Removes extra spaces and makes it more formatted
             line = line.rstrip()
             passw = line
             print(f"Checking '{passw}'...")
@@ -103,7 +104,7 @@ def ssh_connect():
 
             try:
                 session.login(host, username, passw)
-                print("\nYou're in!")
+                print("\nSuccessful login!")
                 session.sendline('whoami')
                 session.prompt()
                 print(f"Username: {str(session.before)[12:-5]}  Password: {passw}")
