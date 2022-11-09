@@ -36,6 +36,7 @@ from cryptography.fernet import Fernet
 from posixpath import dirname
 import os, os.path
 import logging
+from logging.handlers import RotatingFileHandler
 
 # Declare write key function
 def write_key():
@@ -213,13 +214,19 @@ log = logging.getLogger(__name__)
 
 while True:
     # Logging Tool
+    log.setLevel(logging.INFO)
+    handler = RotatingFileHandler('log.txt', maxBytes=50, backupCount=3)
     logging.basicConfig(filename='log.txt', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+    print('Logging started')
+    logging.debug('Something to debug...')
     logging.info('Start Session')
+    logging.warning('Warning! Warning!')
+    logging.critical('There is a critical issue here')
     
     # Runs user_prompt function
     user_prompt()
 
     logging.info('End Session')
-    
+    print('Logging completed')
 
 # End
