@@ -2,7 +2,7 @@
 
 # Script: Ops 401 Class 26 Ops Challenge Solution
 # Author: Ariel D.                  
-# Date of latest revision: 09NOV2022      
+# Date of latest revision: 07NOV2022      
 # Purpose: 
     # Prompt the user to select a mode:
         # Encrypt a file (mode 1)
