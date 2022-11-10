@@ -244,7 +244,7 @@ for i in range(200):
     logs.error('Error: Script has stopped functioning properly.')
 
 try:
-    user_input()
+    user_prompt()
 
 except Exception as msg:
     print(msg)
