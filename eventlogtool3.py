@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Script: Ops 401 Class 26 Ops Challenge Solution
+# Script: Ops 401 Class 28 Ops Challenge Solution
 # Author: Ariel D.                  
 # Date of latest revision: 09NOV2022      
 # Purpose: 
@@ -23,7 +23,10 @@
         # Add logging capabilities to your Python tool using the logging library.
         # Experiment with log types. Build in some error handling, then induce some errors. Send log data to a file in the local directory.
         # Confirm your logging feature is working as expected.
-        
+        # Add a log rotation feature based on size
+        # Use StreamHandler and FileHandler in your Python script.
+            # FileHandler should write to a local file.
+            # StreamHandler should output to the terminal.
 # Resources:
     # https://pypi.org/project/cryptography/
     # https://www.thepythoncode.com/article/encrypt-decrypt-files-symmetric-python
@@ -39,6 +42,7 @@ from cryptography.fernet import Fernet
 from posixpath import dirname
 import os, os.path
 import logging
+from logging.handlers import RotatingFileHandler
 
 # Declare write key function
 def write_key():
@@ -209,20 +213,43 @@ def user_prompt():
     else:
         print("Invalid input")
 
-# Log events into a bucket
-log = logging.getLogger(__name__)
-
 # Main
 
-while True:
-    # Logging Tool
-    logging.basicConfig(filename='log.txt', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
-    logging.info('Start Session')
-    
-    # Runs user_prompt function
-    user_prompt()
+logs = logging.getLogger('my_log')
 
-    logging.info('End Session')
-    
+s_handler = logging.StreamHandler()
+f_handler = logging.FileHandler('log')
+s_handler.setLevel(logging.WARNING)
+f_handler.setLevel(logging.ERROR)
+
+s_format = logging.Formatter('%(name)s - %(leavelname)s - %(message)s')
+f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+s_handler.setFormatter(s_format)
+f_handler.setFormatter(f_format)
+
+r_handler = RotatingFileHandler('log', maxBytes=500, backupCount=3)
+r_formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+r_handler.setFormatter(r_formatter)
+logs.addHandler(r_handler)
+logs.addHandler(s_handler)
+logs.addHandler(f_handler)
+print('Logging in progress')
+
+for i in range(200):
+    logmsg = "Warning: Script is running but should be checked"
+    logmsg += str(i)
+    logs.warning(logmsg)
+    logs.info('Info: Script is running.')
+    logs.critical('Critical: Issue encountered!')
+    logs.error('Error: Script has stopped functioning properly.')
+
+try:
+    user_input()
+
+except Exception as msg:
+    print(msg)
+    logging.exception(msg)
+
+print('Logging complete')
 
 # End

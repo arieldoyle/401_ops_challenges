@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-# Script: Ops 401 Class 07 Ops Challenge Solution
+# Script: Ops 401 Class 27 Ops Challenge Solution
 # Author: Ariel D.                  
-# Date of latest revision: 11OCT2022      
+# Date of latest revision: 10NOV2022      
 # Purpose: 
     # Prompt the user to select a mode:
         # Encrypt a file (mode 1)
@@ -20,7 +20,11 @@
                 # Recursively encrypt a single folder and all its contents
         # Recursively encrypt a single folder and all its contents (mode 5)
         # Recursively decrypt a single folder that was encrypted by this tool (mode 6)
-        
+        # Add logging capabilities to your Python tool using the logging library.
+        # Experiment with log types. Build in some error handling, then induce some errors. Send log data to a file in the local directory.
+        # Confirm your logging feature is working as expected.
+        # Add a log rotation feature based on size
+
 # Resources:
     # https://pypi.org/project/cryptography/
     # https://www.thepythoncode.com/article/encrypt-decrypt-files-symmetric-python
@@ -207,26 +211,31 @@ def user_prompt():
     else:
         print("Invalid input")
 
-# Log events into a bucket
-log = logging.getLogger(__name__)
-
 # Main
 
-while True:
-    # Logging Tool
-    log.setLevel(logging.INFO)
-    handler = RotatingFileHandler('log.txt', maxBytes=50, backupCount=3)
-    logging.basicConfig(filename='log.txt', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
-    print('Logging started')
-    logging.debug('Something to debug...')
-    logging.info('Start Session')
-    logging.warning('Warning! Warning!')
-    logging.critical('There is a critical issue here')
-    
-    # Runs user_prompt function
+logs = logging.getLogger('log')
+logs.setLevel(logging.INFO)
+handler = RotatingFileHandler('log', maxBytes=500, backupCount=3)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+handler.setFormatter(formatter)
+logs.addHandler(handler)
+print('Logging in process')
+
+for i in range(200):
+    logmsg = "Warning: Script is running but should be checked"
+    logmsg += str(i)
+    logs.warning(logmsg)
+    logs.info('Info: Script is running.')
+    logs.critical('Critical: Issue encountered!')
+    logs.error('Error: Script has stopped functioning properly.')
+
+try:
     user_prompt()
 
-    logging.info('End Session')
-    print('Logging completed')
+except Exception as msg:
+    print(msg)
+    logging.exception(msg)
+
+print('Logging complete.')
 
 # End

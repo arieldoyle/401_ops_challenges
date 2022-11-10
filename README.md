@@ -16,3 +16,4 @@
 - [Class 18 OPS Challenge](bruteforce3.py)
 - [Class 26 OPS Challenge](eventlogtool.py)
 - [Class 27 OPS Challenge](eventlogtool2.py)
+- [Class 28 OPS Challenge](eventlogtool3.py)
