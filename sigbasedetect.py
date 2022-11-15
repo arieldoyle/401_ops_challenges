@@ -32,12 +32,13 @@ def linuxSearch():
 	# Count number of files searched and print that number
     os.system("ls " + str(dir) + " | echo \"Searched $(wc -l) files.\"")
 	# Count number of files found and print that number
-    os.system("find " + str(dir) + ' -name ' + str(file) + " -print | echo \"Found $(grep -c /) matching files:\"")
+    os.system("find " + str(dir) + ' -name ' + str(file) + " -print | echo \"Found $(grep -c /) matching file(s):\"")
     print("")
     # Print each filename and location found
     os.system("find " + str(dir) + ' -name ' + str(file))
     print("")
 
+# Function for searching a Windows OS
 def windowsSearch():
 	# Ask user for a path
     dir = input("Please input the directory you would like to search: ")
