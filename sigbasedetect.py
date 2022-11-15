@@ -20,6 +20,7 @@
 # Import libraries
 from sys import platform
 import os, time
+from matplotlib.pyplot import pause
 
 # Declare functions
 
@@ -54,15 +55,22 @@ def windowsSearch():
     os.system("dir /b/s " + str(dir) + "\\" + str(file))
 
 # Main 
+# Intro to the tool and pause for 
+print("Welcome to the Signature-based Malware Detection Tool Command Home.")
+print("Please standby by while we determine what operating system you are running.......")
+pause(2)
 
 # If loop to determine OS and run appropriate function
 # Runs def linuxSearch if platform linux(2) is found
 if platform == "linux" or platform == "linux2":
-    print("This is a Linux machine.")
+    print("This is a Linux machine. \nPlease standby. Starting up the Signature Malware Detection Tool......")
     linuxSearch()
+    pause(2)
+
 # Runs def windowsSearch if platform win32 is found    
 elif platform == "win32":
-    print("This is a Windows machine.")
+    print("This is a Windows machine. \nPlease standby. Starting up the Signature Malware Detection Tool......")
+    pause(2)
     windowsSearch()
 
 # End
