@@ -19,3 +19,4 @@
 - [Class 28 OPS Challenge](eventlogtool3.py)
 - [Class 31 OPS Challenge](sigbasedetect.py)
 - [Class 32 OPS Challenge](sigbasedetect2.py)
+- [Class 33 OPS Challenge](sigbasedetect3.py)
