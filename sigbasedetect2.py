@@ -80,12 +80,12 @@ def windowsSearch():
 	# Print each filename and location found
     os.system("dir /b/s " + str(dir) + "\\" + str(file))
 
-# timestamp function
+# Function to get current time and date and store it
 def timeStamp():
     rn=datetime.datetime.now()
     return rn.strftime('%m-%d-%Y %H:%M:%S')
 
-# hashing function 
+# Function that opens, reads it by a set block by block and returns the hex
 def hash_file(filename):
    # Make a hash object
    hashTag = hashlib.md5()

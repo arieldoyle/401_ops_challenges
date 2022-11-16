@@ -92,12 +92,22 @@ def windowsSearch():
 	# Print each filename and location found
     os.system("dir /b/s " + str(dir) + "\\" + str(file))
 
-# timestamp function
+# Function to get current time and date and store it
 def timeStamp():
     rn=datetime.datetime.now()
     return rn.strftime('%m-%d-%Y %H:%M:%S')
 
-# hashing function 
+# Function that uses the virus-search.py to compare target file's md5 hash with the entries on VirusTotal API to check for known malware signatures
+def checkForMalware():
+    # You'll need a free API key from virustotal.com (need to sign up first)
+    apiKey = os.getenv('API_KEY_VIRUSTOTAL') 
+    # hash = ''     # Used to hardcode hash for testing
+    # This concatenates everything into a working shell statement that gets passed into virustotal-search.py
+    query = 'python3 virustotal-search.py -k ' + apiKey + ' -m ' + hash
+
+    os.system(query)
+
+# Function that opens, reads it by a set block by block and returns the hex 
 def hash_file(filename):
    # Make a hash object
    hashTag = hashlib.md5()
