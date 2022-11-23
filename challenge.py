@@ -69,7 +69,7 @@ def submit_form(form_details, url, value):
 def scan_xss(url):
     forms = get_all_forms(url)
     print(f"[+] Detected {len(forms)} forms on {url}.")
-    js_script = "<script>alert('You have vulnerabilities and are being tracked.')</script>
+    js_script = <script>alert('You have vulnerabilities and are being tracked.')</script>
     is_vulnerable = False
     for form in forms:
         form_details = get_form_details(form)
