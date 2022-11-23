@@ -21,4 +21,4 @@
 - [Class 32 OPS Challenge](sigbasedetect2.py)
 - [Class 33 OPS Challenge](sigbasedetect3.py)
 - [Class 36 OPS Challenge](webappfingerprinting.py)
-- [Class 37 OPS Challenge](webappfingerprinting2.py)
+- [Class 37 OPS Challenge](cookiecapture.py)
