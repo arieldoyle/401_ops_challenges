@@ -27,12 +27,12 @@ from urllib.parse import urljoin
 
 # Declare functions
 
-# This function submits the forms from the dictionary containing form details created by the function above (get_form_details) and populates the input fields with the strings contained in the variable 'value'. It constructs to full url if only a relative path is given. The form is submitted via get or post (dependant upon the form method).
+# This function submits the forms from the dictionary containing form details created by the get_form_details function and populates the input fields with strings contained in the value. Constructs full url only if a relative path is given. Form is submitted via GET or POST request
 def get_all_forms(url):
     soup = bs(requests.get(url).content, "html.parser")
     return soup.find_all("form")
 
-# The function below creates soup 'objects' out of the forms and puts them in a list (details = {}) and continues on to gather details of each form (action, method) and attributes (input/input type)
+# The function below creates soup 'objects' out of the forms and puts them in the details = {} list and continues on to gather details of each action and method form and input attribute
 def get_form_details(form):
     details = {}
     action = form.attrs.get("action").lower()
@@ -47,7 +47,7 @@ def get_form_details(form):
     details["inputs"] = inputs
     return details
 
-# This function submits the forms from the dictionary containing form details created by the function above (get_form_details) and populates the input fields with the strings contained in the variable 'value'. It constructs to full url if only a relative path is given. The form is submitted via get or post (dependant upon the form method). #
+# This function submits the forms from the dictionary containing form details created by the get_form_details function and populates the input fields with the strings contained in value. Constructs full url only if a relative path is given. Frm is submitted via GET or POST request
 def submit_form(form_details, url, value):
     target_url = urljoin(url, form_details["action"])
     inputs = form_details["inputs"]
@@ -65,7 +65,7 @@ def submit_form(form_details, url, value):
     else:
         return requests.get(target_url, params=data)
 
-# Once given a url, this function grabs all the HTML forms and prints out the number of forms detected. It moves through each form, submitting with an insertion of Javascript (js_script)). If the Javascript is successfully passed and executed, the variable is_vulnerable is deemed True. The function will then return the vale of is_vulnerable to indicate whether or not the web page in question is, in fact, susceptible and vulnerable to XSS attacks. #
+# Once given a url, this function grabs all the HTML forms and prints out the number of forms detected. It moves through each form, submitting with js_script insertion. If Javascript is successfully passed and executed, the variable is_vulnerable is deemed True. The function will then return the vale of is_vulnerable to indicate whether or not the web page in question is actually susceptible and vulnerable to XSS attacks
 def scan_xss(url):
     forms = get_all_forms(url)
     print(f"[+] Detected {len(forms)} forms on {url}.")
@@ -83,7 +83,7 @@ def scan_xss(url):
 
 # Main
 
-# "__name__" evaluates to the name of the current module; if being run in the terminal, it is automatically set to "__main__". So this is essentially directing the script to execute the commands beneath it when running in the terminal - in this case, askin the user to input a URL to test, and then running that URL through the scan_xss function and printing out the results. #
+# "__name__" evaluates to the name of the current module; Directing the script to execute the commands beneath it when running in the terminal - in this case, it asks the user to input a URL to test, and then runs that URL through the scan_xss function and prints out the results
 if __name__ == "__main__":
     url = input("Enter a URL to test for XSS:") 
     print(scan_xss(url))
