@@ -23,3 +23,4 @@
 - [Class 36 OPS Challenge](webappfingerprinting.py)
 - [Class 37 OPS Challenge](cookiecapture.py)
 - [Class 38 OPS Challenge](challenge.py)
+- [Class 42 OPS Challenge](attacktools.py)
