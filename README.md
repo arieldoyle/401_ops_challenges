@@ -24,3 +24,4 @@
 - [Class 37 OPS Challenge](cookiecapture.py)
 - [Class 38 OPS Challenge](challenge.py)
 - [Class 42 OPS Challenge](attacktools.py)
+- [Class 44 OPS Challenge](portscannertodo.py)
